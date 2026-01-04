@@ -1,6 +1,6 @@
 [package]
 name = "embeddenator-testkit"
-version = "0.1.0-alpha.1"
+version = "0.1.1"
 edition = "2021"
 authors = ["Tyler Zervas <tz-dev@vectorweight.com>"]
 description = "Testing utilities and fixtures for embeddenator VSA operations"
@@ -10,5 +10,5 @@ keywords = ["vsa", "testing", "embeddenator"]
 categories = ["development-tools::testing"]
 
 [dependencies]
-embeddenator = { path = "../embeddenator" }
+embeddenator = { git = "https://github.com/tzervas/embeddenator", tag = "v0.20.0" }
 rand = "0.8"
