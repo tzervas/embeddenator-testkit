@@ -154,7 +154,7 @@ dependencies = [
 [[package]]
 name = "embeddenator"
 version = "1.0.0"
-source = "git+https://github.com/tzervas/embeddenator?tag=v0.20.0#35400b83c695c1787d5f694a6bb6e3a35e202008"
+source = "git+https://github.com/tzervas/embeddenator?tag=v1.0.0#72c74a5fcf5cfef1c6f2f56377a295d25e3b0f51"
 dependencies = [
  "bincode",
  "clap",

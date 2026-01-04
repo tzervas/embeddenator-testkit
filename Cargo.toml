@@ -10,5 +10,5 @@ keywords = ["vsa", "testing", "embeddenator"]
 categories = ["development-tools::testing"]
 
 [dependencies]
-embeddenator = { git = "https://github.com/tzervas/embeddenator", tag = "v0.20.0" }
+embeddenator = { git = "https://github.com/tzervas/embeddenator", tag = "v1.0.0" }
 rand = "0.8"
