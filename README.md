@@ -145,12 +145,16 @@ This testkit extracts and consolidates test utilities from:
 
 ## Performance Baselines
 
-Based on v0.20.0-alpha.1 benchmarks (Intel i7-14700K, 46GB RAM):
+Example measurements from v0.20.0-alpha.1 on Intel i7-14700K, 46GB RAM.
+**Your results will vary** based on hardware, data patterns, and system load.
+
 - Bundle: ~43ns (sparse), ~32µs (dense packed)
 - Bind: ~11ns (sparse), ~20µs (dense packed)
 - Cosine: ~7ns (sparse), ~14µs (dense packed)
 - Ingestion: ~15 MB/s (2GB dataset)
 - Extraction: ~41 MB/s (2GB dataset)
+
+> Run `cargo bench` to establish baselines for your system.
 
 ## Testing
 
