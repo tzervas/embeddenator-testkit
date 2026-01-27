@@ -1,0 +1,178 @@
+# Embeddenator-Testkit Development Context
+
+**Repo**: embeddenator-testkit  
+**Version**: 0.20.0-alpha.1  
+**Focus**: Evaluation framework, benchmarking, performance validation, regression detection  
+**Last Updated**: 2026-01-16
+
+---
+
+## Active Technologies
+
+- **Rust** 1.84+
+- **embeddenator** (main crate): Core VSA operations
+- **criterion**: Benchmarking framework
+- **Bash**: Orchestration scripts
+
+---
+
+## Project Structure
+
+```
+embeddenator-testkit/
+├── specs/                          # Feature specifications (SDD)
+├── src/lib.rs                      # Testing utilities and fixtures
+├── benches/                        # Performance benchmarks
+├── evaluation_data/                # Test datasets
+├── evaluate.sh                     # Fast evaluation loop (~22s, 14 phases)
+├── evaluation_comprehensive.sh     # Full evaluation with large datasets
+├── evaluation_loop.sh              # Legacy evaluation script
+├── INDEX.md                        # Complete testkit guide
+├── EVALUATION_RESULTS.md           # Detailed results (2026-01-11)
+├── EVALUATION_LOOP_GUIDE.md        # Operational guide
+├── HANDOFF_SUMMARY.md              # Executive summary
+└── .github/agents/                 # Specialized agents
+```
+
+---
+
+## Commands
+
+### Evaluation
+```bash
+# Fast loop (14 phases, ~22 seconds)
+./evaluate.sh
+
+# Comprehensive evaluation (large datasets, extended tests)
+./evaluation_comprehensive.sh
+
+# Legacy loop (7 phases)
+./evaluation_loop.sh
+```
+
+### Benchmarks
+```bash
+# Run all benchmarks
+cargo bench
+
+# Specific benchmark
+cargo bench --bench encoding_throughput
+```
+
+### Testing
+```bash
+# Unit tests
+cargo test --lib
+
+# Integration tests
+cargo test
+```
+
+---
+
+## Evaluation Loop (evaluate.sh)
+
+### Phases
+
+1. **Unit Tests**: Embeddenator main crate (159 tests) + testkit basic tests
+2. **System Resources**: Memory (28GB), CPU cores (28)
+3. **Build Verification**: Base, SIMD optimizations, BT-Phase-2
+4. **E2E Workflows**: 100MB test dataset (ingest 16.6 MB/s, extract 40.8 MB/s)
+5. **Optimization Validation**: SIMD acceleration, BT-Phase-2 packed operations
+6. **Large-Scale Framework**: 20GB+ testing capabilities, GPU acceleration hooks
+7. **Summary**: Pass/warn/fail counters, recommendations
+
+### Status (2026-01-11)
+- **14/14 phases passed** ✅
+- **0 warnings** ✅
+- **0 failures** ✅
+- Duration: 22 seconds
+- Confidence: HIGH
+
+---
+
+## Performance Baselines
+
+### 100MB Test Dataset
+- **Ingestion**: 6.01s (16.6 MB/s)
+- **Extraction**: 2.45s (40.8 MB/s)
+- **Reconstruction**: Bit-perfect (100%)
+- **Storage Overhead**: 286% (VSA holographic tradeoff)
+
+### Scaling Projections (Linear O(n))
+| Dataset | Ingest Time | Extract Time | Storage |
+|---------|-------------|--------------|---------|
+| 100MB   | 6.0s        | 2.5s         | 286MB   |
+| 1GB     | 60s         | 25s          | 2.9GB   |
+| 10GB    | 10m         | 4m           | 29GB    |
+| 20GB    | 20m         | 8m           | 58GB    |
+| 40GB    | 40m         | 16m          | 116GB   |
+
+---
+
+## Code Conventions
+
+### Style
+- Follow Rust API Guidelines
+- Zero clippy warnings
+- Run `cargo fmt` before commit
+
+### Test Utilities
+- Provide dataset generators for deterministic testing
+- Fixtures in `src/fixtures/`
+- Helper functions for common validation patterns
+
+### Scripts
+- Use colored output (green ✅, yellow ⚠️, red ❌)
+- Exit codes: 0 = success, 1 = failure
+- Automatic cleanup on exit
+
+---
+
+## Current Focus (2026-01-16)
+
+### Delivered Artifacts ✅
+- `evaluate.sh`: Fast 14-phase loop
+- `INDEX.md`: Complete operational guide
+- `EVALUATION_RESULTS.md`: Detailed technical results
+- `HANDOFF_SUMMARY.md`: Executive summary
+- `EVALUATION_LOOP_GUIDE.md`: How-to documentation
+
+### Next Steps
+1. **CI Integration**: Wire evaluate.sh into GitHub Actions
+2. **Large-Scale Datasets**: Expand to 20-40GB systematic tests
+3. **Performance Regression Detection**: Baseline tracking and alerts
+4. **GPU Benchmarks**: CUDA/OpenCL acceleration validation
+
+---
+
+## Recent Changes
+
+### 2026-01-16: Spec-Kit Integration
+- Added `.copilot` with repo context
+- Created `specs/` directory structure
+- Updated agents to reference specifications
+
+### 2026-01-11: Evaluation Framework Complete
+- Delivered `evaluate.sh` (14 phases, 22s runtime)
+- Documented comprehensive results (EVALUATION_RESULTS.md)
+- Established performance baselines (16.6 MB/s ingest, 40.8 MB/s extract)
+- Created operational guides (INDEX.md, EVALUATION_LOOP_GUIDE.md)
+
+### 2026-01-11: Documentation
+- HANDOFF_SUMMARY.md: Executive readiness assessment
+- EVALUATION_RESULTS.md: Technical metrics and projections
+
+---
+
+## Agents
+
+Specialized agents in `.github/agents/`:
+- `qa-tester.agent.md`: Test coverage and validation strategies
+- `benchmark-engineer.agent.md`: Performance measurement and analysis
+- `rust-implementer.agent.md`: Idiomatic Rust patterns
+
+---
+
+<!-- MANUAL ADDITIONS START -->
+<!-- MANUAL ADDITIONS END -->
