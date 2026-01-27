@@ -11,4 +11,4 @@ categories = ["development-tools::testing"]
 
 [dependencies]
 embeddenator = { version = "0.20.0-alpha.1" }
-rand = "0.8"
+rand = "0.9"

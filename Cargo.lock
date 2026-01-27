@@ -53,6 +53,21 @@ dependencies = [
 ]
 
 [[package]]
+name = "anyhow"
+version = "1.0.100"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a23eb6b1614318a8071c9b2521f36b424b2c83db5eb3a0fead4a6c0809af6e61"
+
+[[package]]
+name = "arc-swap"
+version = "1.8.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "51d03449bb8ca2cc2ef70869af31463d1ae5ccc8fa3e334b307203fbf815207e"
+dependencies = [
+ "rustversion",
+]
+
+[[package]]
 name = "bincode"
 version = "1.3.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -153,13 +168,21 @@ dependencies = [
 
 [[package]]
 name = "embeddenator"
-version = "1.0.0"
-source = "git+https://github.com/tzervas/embeddenator?tag=v0.20.0#35400b83c695c1787d5f694a6bb6e3a35e202008"
+version = "0.20.0-alpha.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7df3671456787f14a51688ceba17ce9676b03cfcc9bdafcdda3bc4817ee96c7d"
 dependencies = [
  "bincode",
  "clap",
+ "embeddenator-cli",
+ "embeddenator-fs",
+ "embeddenator-interop",
+ "embeddenator-io",
+ "embeddenator-obs",
+ "embeddenator-retrieval",
+ "embeddenator-vsa",
  "libc",
- "rand",
+ "rand 0.8.5",
  "serde",
  "serde_json",
  "sha2",
@@ -167,11 +190,96 @@ dependencies = [
 ]
 
 [[package]]
+name = "embeddenator-cli"
+version = "0.20.0-alpha.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d3538909a362ef851c2c864970d5d37418e6793c700f3939b6fe4b34d484ec72"
+dependencies = [
+ "anyhow",
+ "bincode",
+ "clap",
+ "embeddenator-fs",
+ "embeddenator-io",
+ "embeddenator-retrieval",
+ "embeddenator-vsa",
+ "serde",
+ "serde_json",
+ "walkdir",
+]
+
+[[package]]
+name = "embeddenator-fs"
+version = "0.20.0-alpha.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4e0fe8c7d8c67e00acf2beca7f44ea6b305d5ae5e64615f58eccd8db9963ce34"
+dependencies = [
+ "arc-swap",
+ "bincode",
+ "embeddenator-retrieval",
+ "embeddenator-vsa",
+ "libc",
+ "rustc-hash",
+ "serde",
+ "serde_json",
+ "sha2",
+ "walkdir",
+]
+
+[[package]]
+name = "embeddenator-interop"
+version = "0.20.0-alpha.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4f90a2689fd66ac9b18c6e9e59aa05e343cbc0fc46d7fcfd91a9ae4355da898a"
+dependencies = [
+ "embeddenator-fs",
+ "embeddenator-vsa",
+]
+
+[[package]]
+name = "embeddenator-io"
+version = "0.20.0-alpha.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6be52785281e2d5966b87e9e04b2f856cc388689f79ecf25bb905a7ac5ab5a40"
+
+[[package]]
+name = "embeddenator-obs"
+version = "0.20.0-alpha.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "dc317b06e57492f8de74ad3ec7d41ebb8103ee06f69bae03cb20e7ac8dee4a0f"
+
+[[package]]
+name = "embeddenator-retrieval"
+version = "0.20.0-alpha.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "29a5a989afd1e964a1474a52b55e40d19e0b4c9db95ab89ea292221b3ca24857"
+dependencies = [
+ "bincode",
+ "embeddenator-vsa",
+ "serde",
+ "sha2",
+]
+
+[[package]]
 name = "embeddenator-testkit"
-version = "0.1.1"
+version = "0.20.0-alpha.1"
 dependencies = [
  "embeddenator",
- "rand",
+ "rand 0.9.2",
+]
+
+[[package]]
+name = "embeddenator-vsa"
+version = "0.20.0-alpha.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "90c59858d1ef1dcc6afea75da0619533a818f9ac6d8ad4404cadcc6b7ac7e39d"
+dependencies = [
+ "bincode",
+ "libc",
+ "rand 0.8.5",
+ "rustc-hash",
+ "serde",
+ "serde_json",
+ "sha2",
 ]
 
 [[package]]
@@ -193,6 +301,18 @@ dependencies = [
  "cfg-if",
  "libc",
  "wasi",
+]
+
+[[package]]
+name = "getrandom"
+version = "0.3.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "899def5c37c4fd7b2664648c28120ecec138e4d395b459e5ca34f9cce2dd77fd"
+dependencies = [
+ "cfg-if",
+ "libc",
+ "r-efi",
+ "wasip2",
 ]
 
 [[package]]
@@ -259,14 +379,30 @@ dependencies = [
 ]
 
 [[package]]
+name = "r-efi"
+version = "5.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "69cdb34c158ceb288df11e18b4bd39de994f6657d83847bdffdbd7f346754b0f"
+
+[[package]]
 name = "rand"
 version = "0.8.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "34af8d1a0e25924bc5b7c43c079c942339d8f0a8b57c39049bef581b46327404"
 dependencies = [
  "libc",
- "rand_chacha",
- "rand_core",
+ "rand_chacha 0.3.1",
+ "rand_core 0.6.4",
+]
+
+[[package]]
+name = "rand"
+version = "0.9.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6db2770f06117d490610c7488547d543617b21bfa07796d7a12f6f1bd53850d1"
+dependencies = [
+ "rand_chacha 0.9.0",
+ "rand_core 0.9.3",
 ]
 
 [[package]]
@@ -276,7 +412,17 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e6c10a63a0fa32252be49d21e7709d4d4baf8d231c2dbce1eaa8141b9b127d88"
 dependencies = [
  "ppv-lite86",
- "rand_core",
+ "rand_core 0.6.4",
+]
+
+[[package]]
+name = "rand_chacha"
+version = "0.9.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d3022b5f1df60f26e1ffddd6c66e8aa15de382ae63b3a0c1bfc0e4d3e3f325cb"
+dependencies = [
+ "ppv-lite86",
+ "rand_core 0.9.3",
 ]
 
 [[package]]
@@ -285,8 +431,29 @@ version = "0.6.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ec0be4795e2f6a28069bec0b5ff3e2ac9bafc99e6a9a7dc3547996c5c816922c"
 dependencies = [
- "getrandom",
+ "getrandom 0.2.16",
 ]
+
+[[package]]
+name = "rand_core"
+version = "0.9.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "99d9a13982dcf210057a8a78572b2217b667c3beacbf3a0d8b454f6f82837d38"
+dependencies = [
+ "getrandom 0.3.4",
+]
+
+[[package]]
+name = "rustc-hash"
+version = "2.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "357703d41365b4b27c590e3ed91eabb1b663f07c4c084095e60cbed4362dff0d"
+
+[[package]]
+name = "rustversion"
+version = "1.0.22"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b39cdef0fa800fc44525c84ccb54a029961a8215f9619753635a9c0d2538d46d"
 
 [[package]]
 name = "same-file"
@@ -409,6 +576,15 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ccf3ec651a847eb01de73ccad15eb7d99f80485de043efb2f370cd654f4ea44b"
 
 [[package]]
+name = "wasip2"
+version = "1.0.1+wasi-0.2.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0562428422c63773dad2c345a1882263bbf4d65cf3f42e90921f787ef5ad58e7"
+dependencies = [
+ "wit-bindgen",
+]
+
+[[package]]
 name = "winapi-util"
 version = "0.1.11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -431,6 +607,12 @@ checksum = "ae137229bcbd6cdf0f7b80a31df61766145077ddf49416a728b02cb3921ff3fc"
 dependencies = [
  "windows-link",
 ]
+
+[[package]]
+name = "wit-bindgen"
+version = "0.46.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f17a85883d4e6d00e8a97c586de764dabcc06133f7f1d55dce5cdc070ad7fe59"
 
 [[package]]
 name = "zerocopy"
