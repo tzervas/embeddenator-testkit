@@ -44,6 +44,7 @@ jobs:
           git clone --depth 1 https://github.com/tzervas/embeddenator-retrieval.git
           git clone --depth 1 https://github.com/tzervas/embeddenator-io.git
           git clone --depth 1 https://github.com/tzervas/embeddenator-obs.git
+          git clone --depth 1 https://github.com/tzervas/embeddenator-interop.git
 
       - name: Set up Rust
         uses: dtolnay/rust-toolchain@stable
