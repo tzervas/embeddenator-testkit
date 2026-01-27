@@ -729,7 +729,7 @@ checksum = "48c757948c5ede0e46177b7add2e67155f70e33c07fea8284df6576da70b3719"
 
 [[package]]
 name = "embeddenator-fs"
-version = "0.23.0"
+version = "0.24.0"
 dependencies = [
  "arc-swap",
  "bincode",
@@ -790,7 +790,7 @@ dependencies = [
 
 [[package]]
 name = "embeddenator-testkit"
-version = "0.20.0"
+version = "0.21.0"
 dependencies = [
  "anyhow",
  "bincode",
@@ -827,7 +827,7 @@ dependencies = [
 
 [[package]]
 name = "embeddenator-vsa"
-version = "0.21.0"
+version = "0.21.1"
 dependencies = [
  "libc",
  "rand",

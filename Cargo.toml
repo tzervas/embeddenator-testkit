@@ -1,6 +1,6 @@
 [package]
 name = "embeddenator-testkit"
-version = "0.20.0"
+version = "0.21.0"
 edition = "2021"
 authors = ["Tyler Zervas <tz-dev@vectorweight.com>"]
 description = "Comprehensive testing utilities and performance benchmarking for embeddenator VSA operations"
